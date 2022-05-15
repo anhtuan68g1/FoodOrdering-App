@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fe/layout/layout}">
+
+<body>
+
+<!-- Preloder-->
+<div class="preloder animated">
+    <div class="scoket">
+        <img th:src="@{/fe/img/preloader.svg}" alt=""/>
+    </div>
+</div>
+
+<div class="body">
+
+    <div layout:fragment="contents">
+
+        <!-- Page Header -->
+        <section class="page_header" style="max-height: 200px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2 class="text-uppercase">Profile</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form / Info -->
+        <section class="main-content contact-content">
+            <div class="container">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="row">
+                        <div class="col-md-6 box-profile">
+                            <div class="text-center">
+                                <!--                                     th:src="@{/be/dist/img/user1-128x128.jpg}"-->
+                                <img class="profile-users-img img-fluid img-circle" th:if="${get.getImage() != null}"
+                                     th:src="@{'/images/' + ${get.getImage()}}"
+                                     style="width:128px; height:128px;"
+                                     alt="User profile picture">
+                                <img class="profile-users-img img-fluid img-circle" th:if="${get.getImage() == null}"
+                                     th:src="@{/fe/img/img.png}"
+                                     style="width:135px; height:135px;"
+                                     alt="User profile picture">
+                            </div>
+                            <h3 class="profile-username text-center" th:text="${get.getFullName()}">Nina Mcintire</h3>
+                            <div class="col-md-12 text-center">
+                                <a th:href="@{/edit-account}" class="btn btn-default btn-sm">Edit Profile</a>
+                                <a th:if="${user.getPassword() != ''}" th:href="@{/change-pass}" class="btn btn-default btn-sm">Change Password</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Phone Number</label>
+                            <div class="form-control" th:text="${get.getPhone()}"></div>
+                            <label>Full name</label>
+                            <div class="form-control" th:text="${get.getFullName()}"></div>
+                            <label>Email</label>
+                            <div class="form-control" th:text="${get.getEmail()}"></div>
+                            <label>Birthday</label>
+                            <div class="form-control" th:text="${get.getBirthday()}"></div>
+                            <label>Gender</label>
+                            <div class="form-control" th:text="${get.isGender() ? 'Male' : 'Female'}"></div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="ma-address">
+                                <h3 class="text-left">Your Addresses</h3>
+                                <p>The following addresses will be used on the checkout page by default.</p>
+                                <div class="row">
+                                    <div class="col-md-6" th:if="${address_list != null}"
+                                         th:each="item : ${address_list}">
+                                        <p>
+                                            Receiver: <span th:text="${item.getReceiver()}"></span>
+                                            <br>Address: <span th:text="${item.getAddress()}"></span>
+                                            <br>Phone Number: <span th:text="${item.getPhone()}"></span>
+                                        </p>
+                                        <div class="text-left">
+                                            <a th:href="@{/remove-address/{id}(id=${item.getId()})}"
+                                               class="btn btn-danger btn-sm">Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--                            <div class="col-md-6">-->
+                        <!--                                <form class="contact-form" id="contactForm" th:action="@{/edit-profile}" th:object="get" method="post">-->
+                        <!--                                    <div class="form-group">-->
+                        <!--                                        <input class="form-control" th:field="*{phone}" placeholder="Phone number" type="text" required="required" />-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="form-group">-->
+                        <!--                                        <input class="form-control" th:field="*{fullName}" placeholder="Full name" type="text" required="required" />-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="form-group">-->
+                        <!--                                        <input class="form-control" th:field="*{birthday}" placeholder="Birthday" type="date" required="required" />-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="form-group">-->
+                        <!--                                        <input class="form-control" th:field="*{gender}" placeholder="Gender" type="text" required="required" />-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="form-group">-->
+                        <!--                                        <input class="form-control" type="email" th:field="*{email}" placeholder="Email Address" required="required" />-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="form-group">-->
+                        <!--                                        <input class="form-control" placeholder="Subject" type="text" id="subject" name="subject">-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="form-group">-->
+                        <!--                                        <textarea class="form-control" name="message" id="message" placeholder="Message" rows="5"></textarea>-->
+                        <!--                                    </div>-->
+                        <!--                                    <button class="btn btn-default btn-lg btn-block" id="js-contact-btn">Send message</button>-->
+                        <!--                                </form>-->
+                        <!--                                <div id="js-contact-result" data-success-msg="Form submitted successfully." data-error-msg="Oops. Something went wrong."></div>-->
+
+                        <!--                            </div>-->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+</body>
+</html>

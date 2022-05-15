@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fe/layout/layout}">
+
+<body>
+
+<!-- Preloder-->
+<div class="preloder animated">
+    <div class="scoket">
+        <img th:src="@{/fe/img/preloader.svg}" alt=""/>
+    </div>
+</div>
+
+<div class="body">
+
+    <div layout:fragment="contents">
+
+        <!-- Page Header -->
+        <section class="page_header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2 class="text-uppercase">Recipies</h2>
+                        <p>Tomato is a delicious restaurant website template</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recipe Content -->
+        <section class="recipie-single single-recipe">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="single-recipe-image">
+                            <img class="img-responsive" th:src="@{${'/images/' + product.getImage()}}" alt="">
+                        </div>
+                        <!--                            <div class="clearfix"></div>-->
+                    </div>
+                    <div class="col-md-6">
+                        <h3 th:text="${product.getName()}"></h3>
+                        <p th:text="${product.getDescription()}"></p>
+                        <a th:href="@{/menu}" class="btn btn-secondary btn-lg">Previous</a>
+                        <a th:href="@{/add-cart/{id}(id=${product.getId()})}" class="btn btn-default btn-lg">Add to
+                            Cart</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Recipe -->
+        <section class="featured-recipie">
+            <div class="container">
+                <hr>
+                <h3>Related products</h3>
+                <div class="row">
+                    <div class="featured-recipies">
+                        <div class="fp-content" th:each="item : ${related_product}">
+                            <a th:href="@{/product-details/{id}(id=${item.getId()})}">
+                                <img th:src="@{'/images/' + ${item.getImage()}}" style="width: 360px;height: 236px;"
+                                     class="img-responsive" th:alt="${item.getName()}"/>
+                            </a>
+                            <h4>
+                                <a th:href="@{/product-details/{id}(id=${item.getId()})}">
+                                    <span th:text="${item.getName()}"></span>
+                                </a>
+                                <span th:text="' $ ' + ${item.getPrice()}"></span>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

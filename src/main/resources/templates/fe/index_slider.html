@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fe/layout/layout}">
+<body>
+<div layout:fragment="contents">
+    <!-- Home page-->
+    <section class="home">
+        <div class="overlay"></div>
+
+        <div class="tittle-block">
+            <div class="logo">
+                <a href="#">
+                    <img th:src="@{/fe/img/logo.png}" alt="logo">
+                </a>
+            </div>
+            <div class="logo" style="padding-top: 2em;">
+                <a class="btn btn-default btn-lg" th:href="@{/menu}" role="button">Menu</a>
+<!--                <a class="btn btn-secondary" href="#discount" role="button">Discount</a>-->
+            </div>
+            <h1>DELICIOUS Food</h1>
+            <h2>Tomato is a delitious restaurant website template</h2>
+        </div>
+    </section>
+
+    <!-- About page-->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header wow fadeInDown">
+                        <h1>the restaurant<small>A little about us and a breif history of how we started.</small></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row wow fadeInUp">
+                <div class="col-md-4">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-12 hidden-sm about-photo">
+                                <div class="image-thumb">
+                                    <img th:src="@{/fe/img/thumb1.png}" data-mfp-src="../img/fullImages/pic1.jpg"
+                                         class="img-responsive" alt="logo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 about-photo hidden-xs">
+                                <img th:src="@{/fe/img/thumb2.png}" data-mfp-src="../img/fullImages/pic2.jpg"
+                                     class="img-responsive" alt="logo">
+                            </div>
+                            <div class="col-sm-6 about-photo hidden-xs">
+                                <img th:src="@{/fe/img/thumb3.png}" data-mfp-src="../fe/img/fullImages/pic3.jpg"
+                                     class="img-responsive" alt="logo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                        Our restaurant strives to source local, sustainable and organic when possible.
+                        We work hard to source premium ingredients and we cook everything from scratch with love.
+                        We also do our best to pay our employees living wages (tips are shared with all employees,
+                        including kitchen staff) and to reduce our environmental footprint wherever we can.
+                    </p>
+                    <br>
+                    <p>
+                        Overall,
+                        these factors translate to higher menu prices, but we hope that you find value and
+                        feel a sense of comfort in knowing that we aim to get better everyday at doing what is important
+                        to us.
+                    </p>
+                    <img th:src="@{/fe/img/signature.png}" alt="signature">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Today's special page-->
+    <section class="special" id="discount">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header wow fadeInDown">
+                        <h1 class="white">today's specials<small>A little about us and a breif history of how we
+                            started.</small></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row wow fadeInUp">
+                <div class="col-md-offset-1 col-md-10">
+                    <div class="flexslider special-slider">
+                        <ul class="slides">
+                            <li th:each="item : ${products}">
+                                <div class="slider-img">
+                                    <img th:src="${'images/' + item.getImage()}"
+                                         style="width: 360px;height: 250px; margin: 10px;" alt=""/>
+                                </div>
+                                <div class="slider-content">
+                                    <div class="page-header">
+                                        <h1 style="text-transform: uppercase;" th:text="${item.getName()}">Pancake with
+                                            Caramel<small>If you are a fan of caramel cake, then you'll
+                                                love our Pancake with caramel icecream. It's not thick, but very
+                                                tasty.</small></h1>
+                                    </div>
+                                    <p th:text="${item.getDescription()}">Ultrices In massa est, dignissim in libero ac,
+                                        fringilla ornare mi.Ultrices eget
+                                        justo. Nam purus lacus, efficitur eget laoreet sed, finibus nec neque. Cras eget
+                                        enim in diam dapibus sagittis. accumsan, habitant morbi tristique senectus et
+                                        netus et malesuada fames ac turpis egestas.</p>
+                                    <a class="btn btn-default" th:href="@{/add-cart/{id}(id=${item.getId()})}"
+                                       role="button">Add to cart</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="direction-nav hidden-sm">
+                            <div class="next">
+                                <a><img th:src="@{/fe/img/right-arrow.png}" alt=""/></a>
+                            </div>
+                            <div class="prev">
+                                <a><img th:src="@{/fe/img/left-arrow.png}" alt=""/></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- menu-->
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header wow fadeInDown">
+                        <h1>Our menu<small>These fine folks trusted the award winning restaurant.</small></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="food-menu wow fadeInUp">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="menu-tags">
+                            <span data-filter="*" class="tagsort-active">All</span>
+                            <span data-filter=".starters">Starters</span>
+                            <span data-filter=".main">Main courses</span>
+                            <span data-filter=".desserts">Desserts</span>
+                            <span data-filter=".drinks">Drinks</span>
+                            <span data-filter=".snacks">Snacks</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row menu-items">
+                    <div th:class="'menu-item col-sm-6 col-xs-12 ' + ${item.getCategoryId().getName().toLowerCase()}" th:each="item : ${products}">
+                        <div class="clearfix menu-wrapper">
+                            <h4 th:text="${item.getName()}">English asparagus</h4>
+                            <span class="price" th:text="${'$' + item.getPrice()}">$14.95</span>
+                            <div class="dotted-bg"></div>
+                        </div>
+                        <!--                        <p>pellentesque enim. Aliquam tempor</p>-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="menu-btn">
+                            <a class="btn btn-default btn-lg" th:href="@{/menu}" role="button">Explore our
+                                menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+</body>
+
+</html>

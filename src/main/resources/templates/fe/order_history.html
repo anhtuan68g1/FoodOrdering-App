@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fe/layout/layout}">
+<body>
+<!-- Preloder-->
+<div class="preloder animated">
+    <div class="scoket">
+        <img th:src="@{/fe/img/preloader.svg}" alt=""/>
+    </div>
+</div>
+
+<div class="body">
+
+    <div layout:fragment="contents">
+
+        <!-- Page Header -->
+        <section class="page_header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2 class="text-uppercase">Your Orders</h2>
+                        <p>Your recent orders, shipping &amp; delivery addresses</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Account Content -->
+        <section class="shop-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Recent Orders</h3>
+                        <br>
+                        <table class="cart-table account-table table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Order Code</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:if="${orderList != null}" th:each="item : ${orderList}">
+                                <td th:text="${item.getId()}">
+                                    900
+                                </td>
+                                <td th:text="${item.getOrderDate()}">
+                                    June 15, 2015
+                                </td>
+                                <td th:text="${item.getStatus()}">
+                                    Delivered
+                                </td>
+                                <td th:text="${item.getTotal_price()}">
+                                    &pound;173 for 4 items
+                                </td>
+                                <td>
+                                    <a th:href="@{/view-order/{id}(id=${item.getId()})}">View</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <br>
+                        <br>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+</body>
+
+</html>

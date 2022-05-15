@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fe/layout/layout}">
+
+<body>
+<div layout:fragment="contents">
+
+    <!-- Preloder-->
+    <div class="preloder animated">
+        <div class="scoket">
+            <img th:src="@{/fe/img/preloader.svg}" alt=""/>
+        </div>
+    </div>
+
+    <div class="body">
+
+        <div class="main-wrapper">
+
+<!--             Page Header -->
+            <section class="page_header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h2 class="text-uppercase wow fadeInDown">About us</h2>
+                            <p class="wow fadeInUp">Read our Story, How we started and about the Team</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="giant-space">
+                            <h2 class="text-giant">404</h2>
+                            <p class="wow fadeInUp">Sorry. The page you are looking for is not found</p>
+                            <p class="top-space-lg"><a href="index_slider.html" class="btn btn-default btn-lg">Back to
+                                home</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</body>
+
+</html>

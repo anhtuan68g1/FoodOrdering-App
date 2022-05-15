@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fe/layout/layout}">
+
+
+<body>
+
+<!-- Preloder-->
+<div class="preloder animated">
+    <div class="scoket">
+        <img th:src="@{/fe/img/preloader.svg}" alt=""/>
+    </div>
+</div>
+
+<div class="body">
+
+    <div layout:fragment="contents">
+
+        <!-- Checkout Form -->
+        <section class="shop-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="row">
+                            <div class="text-center">
+                                <h3>Add new Address</h3>
+                            </div>
+
+                            <br>
+                            <div class="col-xs-6 col-xs-offset-3">
+                                <div class="billing-details">
+                                    <div th:if="${message != null}" th:text="${message}" style="color: #00a379"></div>
+                                    <form th:action="@{/save-address}" th:object="${uAddress}" method="post">
+                                        <fieldset>
+                                            <legend>Address</legend>
+                                            <label class="">Receiver </label>
+                                            <input class="form-control" placeholder="enter receiver" type="text" min="3" max="50"
+                                                   th:field="*{receiver}" required>
+                                            <div class="clearfix space20"></div>
+                                            <label>Address</label>
+                                            <input class="form-control" placeholder="enter address"
+                                                   th:field="*{address}" type="text" min="10" max="100" required>
+                                            <div class="clearfix space20"></div>
+                                            <label>Phone </label>
+                                            <input class="form-control" placeholder="enter phone"
+                                                   th:field="*{phone}" min="10" max="11" type="text" required>
+                                            <div class="clearfix space20"></div>
+                                            <br>
+                                            <div class="text-center">
+                                                <a th:href="@{/choose-address/{id}(id=${get.getId()})}"
+                                                   class="btn btn-default btn-sm">Cancel</a>
+                                                <input type="submit" value="Create" class="btn btn-success btn-sm">
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

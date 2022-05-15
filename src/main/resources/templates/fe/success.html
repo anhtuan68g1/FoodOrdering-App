@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fe/layout/layout}">
+<body>
+<!-- Preloder-->
+<div class="preloder animated">
+    <div class="scoket">
+        <img th:src="@{/fe/img/preloader.svg}" alt=""/>
+    </div>
+</div>
+
+<div layout:fragment="contents">
+
+    <div class="main-wrapper">
+
+
+        <!-- Page Header -->
+        <section class="page_header vertical-padding">
+
+        </section>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="giant-space">
+                        <p><img th:src="@{/fe/img/check.png}" alt="Tick"/></p>
+                        <h2>Thank you!</h2>
+                        <p class="wow fadeInUp">Aweomse. Your request is recived and will get back to you soon. </p>
+                        <p class="top-space-lg"><a th:href="@{/}" class="btn btn-success btn-lg">Go
+                            back</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

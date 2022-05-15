@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fe/layout/layout}">
+
+
+<body>
+
+<!-- Preloder-->
+<div class="preloder animated">
+    <div class="scoket">
+        <img th:src="@{/fe/img/preloader.svg}" alt=""/>
+    </div>
+</div>
+
+<div class="body">
+
+    <div layout:fragment="contents">
+
+
+        <!-- Page Header -->
+        <section class="page_header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2 class="text-uppercase">Register An Account</h2>
+                        <p>Please login or signup to continue with your purchase</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Account Content -->
+        <section class="shop-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row shop-login">
+                            <div class="col-md-12">
+                                <div class="box-content">
+                                    <br>
+                                    <form th:action="@{/process_register}" th:object="${user}" method="post" enctype="multipart/form-data" style="max-width: 500px; margin: auto;">
+                                        <div style="color: red;" th:if="${message != null}" th:text="${message}"></div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label>Phone</label>
+                                                <input type="text" th:field="*{phone}" class="form-control" required minlength="3" maxlength="12">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                <input type="password" id="password" name="password" th:field="*{password}" class="form-control" required minlength="3" maxlength="12">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Confirm Password</label>
+                                                <input type="password" id="confirm_password" name="confirm_password" class="form-control" required minlength="3" maxlength="12">
+                                                <span id='message'></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Full name</label>
+                                                <input type="text" th:field="*{fullName}" class="form-control" required minlength="3" maxlength="25">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Birthday</label>
+                                                <input type="date" id="datefield" th:field="*{birthday}" min="1980-01-01" max="2004-31-12" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Gender</label>
+                                                <select th:field="*{gender}" class="form-control custom-select">
+                                                    <option th:value="1">Male</option>
+                                                    <option th:value="0">Female</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="email" th:field="*{email}" class="form-control" title="The domain portion of the email address is invalid (the portion after the @)." pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Image</label>
+                                                <input type="file" name="images" id="image" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-12">
+                                                    <a th:href="@{/userlogin}" class="btn btn-secondary">Cancel</a>
+                                                    <input type="submit" value="Registration" class="btn btn-default">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

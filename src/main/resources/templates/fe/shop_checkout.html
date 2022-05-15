@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fe/layout/layout}">
+
+
+<body>
+
+<!-- Preloder-->
+<div class="preloder animated">
+    <div class="scoket">
+        <img th:src="@{/fe/img/preloader.svg}" alt=""/>
+    </div>
+</div>
+
+<div class="body">
+
+    <div layout:fragment="contents">
+
+        <!-- Page Header -->
+        <section class="page_header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2 class="text-uppercase">Checkout</h2>
+                        <p>Enter your address and get these items in your doorstep</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkout Form -->
+        <section class="shop-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="row">
+                            <!--                            <div class="col-xs-6 col-xs-offset-3">-->
+                            <div class="col-xs-6 col-xs-offset-3">
+                                <div class="billing-details">
+                                    <h3 class="text-left">Ship to a different address?
+                                        <a th:href="@{/choose-address/{id}(id=${get.getId()})}" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-arrow-right"></span></a>
+                                    </h3>
+                                    <br>
+                                    <div class="text-center " th:if="${message != null}" th:text="${message}"
+                                         style="color: #00a379"></div>
+                                    <form th:action="@{/save-order}" th:object="${uAddress}" method="post">
+                                        <label class="">Receiver </label>
+                                        <input class="form-control" placeholder="enter receiver" type="text"
+                                               th:field="*{receiver}"
+                                               th:value="${uAddress.receiver}">
+                                        <div class="clearfix space20"></div>
+                                        <label>Address</label>
+                                        <input class="form-control" placeholder="enter address" th:field="*{address}"
+                                               th:value="${uAddress.address}" type="text">
+                                        <div class="clearfix space20"></div>
+                                        <label>Phone </label>
+                                        <input class="form-control" placeholder="enter phone" th:field="*{phone}"
+                                               th:value="${uAddress.phone}" type="text">
+                                        <div class="clearfix space20"></div>
+                                        <label>Payment method </label>
+                                        <input class="form-control"
+                                               th:value="${'COD'}" type="text">
+                                        <div class="clearfix space20"></div>
+                                        <label>Shipping Fee </label>
+                                        <input class="form-control"
+                                               th:value="${'Free'}" type="text" readonly>
+                                        <div class="clearfix space20"></div>
+                                        <label>Order Total </label>
+                                        <input class="form-control"
+                                               th:value="${'$ ' + total}" type="text" readonly>
+                                        <div class="clearfix space20"></div>
+                                        <br>
+                                        <div class="text-center">
+                                            <input type="submit" value="Order Now"
+                                                   class="btn btn-default btn-lg text-center"
+                                                   style="border-radius: 5px;"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
