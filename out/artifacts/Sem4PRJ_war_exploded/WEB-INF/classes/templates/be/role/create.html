@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{be/layout/layout}">
+
+
+
+<body>
+
+
+<!-- Content Wrapper. Contains page content -->
+<div layout:fragment="contents">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+<!--                <div class="col-sm-6">-->
+<!--                    <div th:if="${message != null}" th:text="${message}"></div>-->
+<!--                </div>-->
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12" style="padding: 0 30% 0 30%; margin:auto;">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Create</h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+<!--                    enctype="multipart/form-data"-->
+                    <form th:action="@{/be/roles/save}" th:object="${roles}" method="post" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Full name</label>
+                                <input type="text" th:field="*{adminId}" class="form-control" required minlength="3" maxlength="25">
+                            </div>
+                            <div class="form-group">
+                                <label>Role</label>
+                                <select th:field="*{roles}" class="form-control custom-select">
+                                    <option th:value="1">Admin</option>
+                                    <option th:value="2">Employee</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-12">
+                                    <a th:href="@{/be/admin/}" class="btn btn-secondary">Cancel</a>
+                                    <input type="submit" value="Create" class="btn btn-success">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+
+
+</body>
+</html>
+

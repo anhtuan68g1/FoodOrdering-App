@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fe/layout/layout}">
+
+
+<body>
+
+
+<!-- Preloder-->
+<div class="preloder animated">
+    <div class="scoket">
+        <img th:src="@{/fe/img/preloader.svg}" alt=""/>
+    </div>
+</div>
+
+<div class="body">
+
+    <div layout:fragment="contents">
+        <!-- Page Header -->
+        <section class="page_header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2 class="text-uppercase">Cart</h2>
+                        <p>Checkout or add some items to your cart</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Table -->
+        <section class="shop-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <table class="cart-table table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="item : ${list}">
+                                <td>
+                                    <a th:href="@{/remove/{id}(id=${item.getProductId().getId()})}" class="remove"><i
+                                            class="fa fa-times"></i></a>
+                                </td>
+                                <td>
+                                    <img th:src="@{'images/' + ${item.getProductId().getImage()}}" height="80"
+                                         width="90"/>
+                                </td>
+                                <td th:text="${item.getProductId().getName()}">
+
+                                </td>
+                                <td th:text="${'$' + item.getProductId().getPrice()}">
+
+
+                                </td>
+                                <td>
+                                    <nav>
+                                        <ul class="pagination">
+                                            <li class="page-item">
+                                                <a th:href="@{/plus-qty/{id}(id=${item.getProductId().getId()})}"
+                                                   class="page-link text-center"
+                                                   style="color: mediumseagreen;"><i class="fa fa-plus"></i></a>
+                                            </li>
+                                            <li class="page-item">
+                                                <span class="page-link text-center"
+                                                      th:text="${item.getQuantity()}"></span>
+                                            </li>
+                                            <li class="page-item">
+                                                <a th:href="@{/minus-qty/{id}(id=${item.getProductId().getId()})}"
+                                                   class="page-link text-center"
+                                                   style="color: red"><i class="fa fa-minus"></i></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </td>
+                                <td th:text="${'$' + item.getProductId().getPrice() * item.getQuantity()}">
+                                    <span class="amount">£69.99</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="4">
+                                    <a th:if="${get != null && total > 0}" th:href="@{/check-out}" class="btn btn-success">Checkout</a>
+                                    <div th:if="${get == null}" style="color: red">Please login to check out !!!</div>
+                                    <a th:if="${get == null}" th:href="@{/userlogin}" class="btn btn-default">Login</a>
+                                </td>
+                                <td colspan="1">Order Total:</td>
+                                <td colspan="1"><span class="amount" th:if="${total != null}" th:text="${'$'+ total}">£190.00</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

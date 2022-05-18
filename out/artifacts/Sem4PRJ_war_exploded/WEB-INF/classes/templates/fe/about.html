@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fe/layout/layout}">
+
+<body>
+<div class="body">
+
+    <div layout:fragment="contents">
+
+        <!--            Page Header-->
+        <section class="page_header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2 class="text-uppercase wow fadeInDown">About us</h2>
+                        <p class="wow fadeInUp">Read our Story, How we started and about the Team</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- About -->
+        <section class="about2">
+            <div class="container">
+                <div class="row wow fadeInUp">
+                    <div class="col-md-5">
+                        <img th:src="@{/fe/img/about.png}" class="img-responsive" alt=""/>
+                    </div>
+                    <div class="col-md-7 text-left">
+                        <h2 class="text-left">Our Story</h2>
+                        <p>Our restaurant strives to source local, sustainable and organic when possible.
+                            We work hard to source premium ingredients and we cook everything from scratch with love.
+                            We also do our best to pay our employees living wages (tips are shared with all employees,
+                            including kitchen staff) and to reduce our environmental footprint wherever we can. Overall,
+                            these factors translate to higher menu prices, but we hope that you find value and
+                            feel a sense of comfort in knowing that we aim to get better everyday at doing what is important to us.</p>
+                        <a class="btn btn-default" role="button" th:href="@{/menu}">See Our Menu</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section class="team">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-header wow fadeInDown">
+                            <h1>Our Team<small>The Hardworking Team behind the restaurant</small></h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 text-center">
+                        <div class="team-staff wow fadeInUp" data-wow-delay="0.2s">
+                            <img th:src="@{/fe/img/team/1.png}" class="img-responsive center-block" alt=""/>
+                            <h4>Luke Nguyen</h4>
+                            <p>Chef</p>
+                            <ul class="team-social">
+                                <li><a href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 text-center">
+                        <div class="team-staff wow fadeInUp" data-wow-delay="0.4s">
+                            <img th:src="@{/fe/img/team/2.png}" class="img-responsive center-block" alt=""/>
+                            <h4>Phan Ton Tinh Hai</h4>
+                            <p>Chef</p>
+                            <ul class="team-social">
+                                <li><a href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 text-center">
+                        <div class="team-staff wow fadeInUp" data-wow-delay="0.6s">
+                            <img th:src="@{/fe/img/team/3.png}" class="img-responsive center-block" alt=""/>
+                            <h4>Christine Ha</h4>
+                            <p>Chef</p>
+                            <ul class="team-social">
+                                <li><a href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 text-center">
+                        <div class="team-staff wow fadeInUp" data-wow-delay="0.8s">
+                            <img th:src="@{/fe/img/team/4.png}" class="img-responsive center-block" alt=""/>
+                            <h4>David Thai</h4>
+                            <p>Chef</p>
+                            <ul class="team-social">
+                                <li><a href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

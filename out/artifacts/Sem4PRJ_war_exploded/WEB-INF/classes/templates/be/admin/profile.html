@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{be/layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!-- Content Wrapper. Contains page content -->
+<div layout:fragment="contents">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12" style="padding: 0 30% 0 30%; margin:auto;">
+                    <!-- Profile Image -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <!--                                     th:src="@{/be/dist/img/user1-128x128.jpg}"-->
+                                <img class="profile-users-img img-fluid img-circle"
+                                     th:src="${'/images/' + get.getImage()}"
+                                     style="width:128px; height:128px;"
+                                     alt="User profile picture">
+                            </div>
+
+                            <h3 class="profile-username text-center" th:text="${get.getFullname()}">Nina Mcintire</h3>
+
+                            <p class="text-muted text-center" th:text="${(role.getRoleId().getId() == 2) ?'Employee' : 'Admin' }">Software Engineer</p>
+
+                            <ul class="list-group list-group-unbordered mb-6" th:object="${get}">
+                                <li class="list-group-item" style="padding:20px 0 10px 0">
+                                    <b>User name</b> <p class="float-right" th:text="*{username}"></p>
+                                </li>
+                                <li class="list-group-item" style="padding:20px 0 10px 0">
+                                    <b>Full name</b> <p class="float-right" th:text="*{fullname}"></p>
+                                </li>
+                                <li class="list-group-item" style="padding:20px 0 10px 0">
+                                    <b>Birthday</b> <p class="float-right" th:text="*{birthday}"></p>
+                                </li>
+                                <li class="list-group-item" style="padding:20px 0 10px 0">
+                                    <b>Gender</b> <p class="float-right" th:text="${get.getGender() ? 'Male' : 'Female'}"></p>
+                                </li>
+                                <li class="list-group-item" style="padding:20px 0 10px 0">
+                                    <b>Email</b> <p class="float-right" th:text="*{email}"></p>
+                                </li>
+                                <li class="list-group-item" style="padding:20px 0 10px 0">
+                                    <b>Status</b> <p class="float-right" th:text="${get.getStatus() ? 'Active' : 'Deactive'}"></p>
+                                </li>
+                            </ul>
+                            <nav class="row text-center">
+<!--                                <a th:if="${get.g}" th:href="@{/be/admin/}" class="btn btn-primary btn-sm col-sm-4"><b>Back</b></a>-->
+                                <a th:href="@{|${'/be/account/update/' + get.getId()}|}" class="btn btn-outline-warning btn-sm col-sm-6"><b>Edit</b></a>
+                                <a th:href="@{|${'/be/account/changepassword/' + get.getId()}|}" class="btn btn-primary btn-sm col-sm-6"><b>Change Password</b></a>
+                            </nav>
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <!--/.col (right) -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- ./wrapper -->
+
+</body>
+</html>

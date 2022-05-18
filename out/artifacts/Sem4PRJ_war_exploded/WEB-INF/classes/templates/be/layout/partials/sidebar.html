@@ -1,0 +1,142 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4"
+       xmlns:th="http://www.thymeleaf.org"
+       th:fragment="sidebar" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+        <img th:src="@{/be/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Food System</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar users (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img th:src="@{/be/dist/img/user2-160x160.jpg}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a th:href="@{/be/user/profile}" class="d-block">[[${#request.userPrincipal.principal.username}]]</a>
+<!--                <a th:href="@{/be/profile/{uname}(uname=${request.userPrincipal.principal.username})}"></a>-->
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                <li class="nav-item menu-open">
+                    <a class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Manage Account
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a th:href="@{/be/admin}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Administrator</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{/be/user}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{/be/uas}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>User Address</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item menu-open">
+                    <a class="nav-link">
+                        <i class="nav-icon fas fa-award"></i>
+                        <p>
+                            Manage Product
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a th:href="@{/be/product}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Product</p>
+                            </a>
+                        </li>
+<!--                        <li class="nav-item">-->
+<!--                            <a th:href="@{/be/fap}" class="nav-link">-->
+<!--                                <i class="far fa-circle nav-icon"></i>-->
+<!--                                <p>Favourite_Product</p>-->
+<!--                            </a>-->
+<!--                        </li>-->
+                        <li class="nav-item">
+                            <a th:href="@{/be/cate}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Categories</p>
+                            </a>
+                        </li>
+<!--                        <li class="nav-item">-->
+<!--                            <a th:href="@{/be/discount}" class="nav-link">-->
+<!--                                <i class="far fa-circle nav-icon"></i>-->
+<!--                                <p>Discount</p>-->
+<!--                            </a>-->
+<!--                        </li>-->
+                    </ul>
+                </li>
+
+                <li class="nav-item menu-open">
+                    <a class="nav-link">
+                        <i class="nav-icon fas fa-pen"></i>
+                        <p>
+                            Manage Order
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a th:href="@{/be/order}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Order List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{/be/report}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Report
+                                </p>
+                            </a>
+                        </li>
+<!--                        <li class="nav-item">-->
+<!--                            <a th:href="@{/be/items}" class="nav-link">-->
+<!--                                <i class="far fa-circle nav-icon"></i>-->
+<!--                                <p>User's Cart-Items</p>-->
+<!--                            </a>-->
+<!--                        </li>-->
+                    </ul>
+                </li>
+
+<!--                <li class="nav-item menu-open">-->
+<!--                    <a th:href="@{/be/report}" class="nav-link">-->
+<!--                        <i class="nav-icon fas fa-book"></i>-->
+<!--                        <p>-->
+<!--                            Report-->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                </li>-->
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fe/layout/layout}">
+
+<body>
+
+    <!-- Preloder-->
+    <div class="preloder animated">
+        <div class="scoket">
+            <img th:src="@{/fe/img/preloader.svg}" alt="" />
+        </div>
+    </div>
+
+    <div class="body">
+
+        <div layout:fragment="contents">
+
+            <!-- Page Header -->
+            <section class="page_header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h2 class="text-uppercase">Menu</h2>
+                            <p>Tomato is a delicious restaurant website template</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- menu-->
+            <section class="menu menu2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="page-header wow fadeInDown">
+                                <h1><small>These fine folks trusted the award winning restaurant.</small></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row food-menu wow fadeInUp">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="menu-tags2">
+                                    <span data-filter="*" class="tagsort2-active">All</span>
+                                    <span data-filter=".starters">Starters</span>
+                                    <span data-filter=".main">Main courses</span>
+                                    <span data-filter=".desserts">Desserts</span>
+                                    <span data-filter=".drinks">Drinks</span>
+                                    <span data-filter=".snacks">Snacks</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row menu-items2">
+                            <div th:class="'menu-item2 col-sm-4 col-xs-12 ' + ${item.getCategoryId().getName().toLowerCase()}" th:each="item : ${products}">
+                                <div class="menu-info">
+                                    <a th:href="@{/product-details/{id}(id=${item.getId()})}">
+                                        <img th:src="${'images/' + item.getImage()}" style="width: 360px;height: 236px;" class="img-responsive" th:alt="${item.getName()}" />
+                                        <div class="menu2-overlay">
+                                            <h4 th:text="${item.getName()}">English-Asparagus</h4>
+                                            <p th:text="${item.getDescription()}">Asparagus, hens egg, toasted
+                                                <br>sunflower seeds, Spenwood cheese</p>
+                                            <span class="price" th:text="'$' + ${item.getPrice()}">$ 14.95</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <a th:href="@{/add-cart/{id}(id=${item.getId()})}" class="menu-more">+</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

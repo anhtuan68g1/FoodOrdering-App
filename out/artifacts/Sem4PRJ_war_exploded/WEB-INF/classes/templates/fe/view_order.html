@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fe/layout/layout}">
+
+
+<body>
+
+
+<!-- Preloder-->
+<div class="preloder animated">
+    <div class="scoket">
+        <img th:src="@{/fe/img/preloader.svg}" alt=""/>
+    </div>
+</div>
+
+<div class="body">
+
+    <div layout:fragment="contents">
+        <!-- Page Header -->
+        <section class="page_header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2 class="text-uppercase">Purchase history</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Table -->
+        <section class="shop-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <table class="cart-table table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="item : ${listDetail}">
+                                <td>
+                                    <img th:src="@{'/images/' + ${item.getProductId().getImage()}}" height="80"
+                                         width="90"/>
+                                </td>
+                                <td th:text="${item.getProductId().getName()}">
+                                </td>
+                                <td th:text="${'$' + item.getProductId().getPrice()}">
+                                </td>
+                                <td th:text="${item.getQuantity()}">
+                                </td>
+                                <td th:text="${'$' + item.getProductId().getPrice() * item.getQuantity()}">
+                                    <span class="amount">£69.99</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"> Payment: COD </td>
+                                <td>Order Total:</td>
+                                <td><span class="amount" th:if="${order.getTotal_price() != null}"
+                                          th:text="${'$'+ order.getTotal_price()}">£190.00</span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">Address:
+                                    <span th:text="${order.getAddress()}"></span><br>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--                        <div class="cart_totals">-->
+                        <!--                            <div class="col-md-6 push-md-6 no-padding">-->
+                        <!--                                <table class="table table-bordered extra-padding">-->
+                        <!--                                    <tbody>-->
+                        <!--                                    <tr>-->
+                        <!--                                        <th>Payment: COD</th>-->
+                        <!--                                        <th style="color: red;">Address:-->
+                        <!--                                            <span th:text="${order.getAddress()}"></span><br>-->
+                        <!--                                        </th>-->
+                        <!--                                        <th>Order Total: <span class="amount" style="color: red" th:if="${order.getTotal_price() != null}"-->
+                        <!--                                                               th:text="${'$'+ order.getTotal_price()}">£190.00</span></th>-->
+                        <!--                                    </tr>-->
+                        <!--                                    </tbody>-->
+                        <!--                                </table>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

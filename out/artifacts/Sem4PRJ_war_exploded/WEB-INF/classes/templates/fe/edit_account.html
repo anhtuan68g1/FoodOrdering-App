@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fe/layout/layout}">
+
+
+<body>
+
+<!-- Preloder-->
+<div class="preloder animated">
+    <div class="scoket">
+        <img th:src="@{/fe/img/preloader.svg}" alt=""/>
+    </div>
+</div>
+
+<div class="body">
+
+    <div layout:fragment="contents">
+
+        <!-- Checkout Form -->
+        <section class="shop-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="row">
+                            <div class="text-center">
+                                <h3>Edit Account</h3>
+                            </div>
+                            <br>
+                            <div class="col-xs-6 col-xs-offset-3">
+                                <div class="billing-details">
+                                    <form th:action="@{/save-account}" th:object="${getAccount}" method="post" enctype="multipart/form-data">
+                                        <fieldset>
+                                            <input type="hidden" th:field="*{id}">
+                                            <input type="hidden" th:field="*{email}">
+                                            <input type="hidden" th:field="*{password}">
+                                            <legend>Your Information</legend>
+                                            <label class="">Phone </label>
+                                            <input class="form-control" type="text"
+                                                   th:field="*{phone}" required>
+                                            <div class="clearfix space20"></div>
+                                            <label>Full name</label>
+                                            <input class="form-control"
+                                                   th:field="*{fullName}" type="text" required minlength="3" maxlength="25">
+                                            <div class="clearfix space20"></div>
+                                            <label>Birthday </label>
+                                            <input type="date" id="datefield" th:field="*{birthday}" min="1980-01-01" max="2004-31-12" class="form-control" required>
+                                            <div class="clearfix space20"></div>
+                                            <br>
+                                            <label>Gender </label>
+                                            <select th:field="*{gender}" class="form-control custom-select">
+                                                <option th:value="1">Male</option>
+                                                <option th:value="0">Female</option>
+                                            </select>
+                                            <div class="clearfix space20"></div>
+                                            <div class="clearfix space20"></div>
+                                            <label>Avatar</label>
+                                            <img th:src="@{'/images/' + ${getAccount.getImage()}}" style="width:128px; height:128px"/>
+                                            <input type="file" name="images" id="image" class="form-control">
+                                            <br>
+                                            <div class="text-center">
+                                                <input type="submit" value="Save" class="btn btn-success btn-sm">
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

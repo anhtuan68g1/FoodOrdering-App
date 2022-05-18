@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+    <title>Tomato Responsive Restaurant HTML5 Template</title>
+    <meta name="author" content="Surjith S M">
+
+    <!-- SEO -->
+    <meta name="description" content="Tomato is a Responsive HTML5 Template for Restaurants and food related services.">
+    <meta name="keywords" content="tomato, responsive, html5, restaurant, template, food, reservation">
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" th:href="@{/fe/img/favicon.ico}">
+
+    <!-- Responsive Tag -->
+    <meta name="viewport" content="width=device-width">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" th:href="@{/fe/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/fe/css/font-awesome/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/fe/css/plugin.css}">
+    <link rel="stylesheet" th:href="@{/fe/js/vendor/vegas/vegas.min.css}">
+    <link rel="stylesheet" th:href="@{/fe/css/main.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="js/vendor/html5-3.6-respond-1.4.2.min.js"></script>
+    <![endif]-->
+</head>
+
+<body id="intro3">
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Preloder-->
+<div class="preloder animated">
+    <div class="scoket">
+        <img th:src="@{/fe/img/preloader.svg}" alt=""/>
+    </div>
+</div>
+
+<div class="body">
+
+    <!-- Navigation-->
+    <nav class="navbar navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="./index.html">
+                    <img th:src="@{/fe/img/nav-logo.png}" alt="nav-logo">
+                </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a th:href="@{/}" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/menu}" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
+                    </li>
+<!--                    <li>-->
+<!--                        <a th:href="@{/recipe}" role="button" aria-haspopup="true" aria-expanded="false">Recipies</a>-->
+<!--                    </li>-->
+                    <li class="dropdown">
+                        <a th:href="@{/about}" role="button" aria-haspopup="true" aria-expanded="false">About us</a>
+                    </li>
+                    <li class="dropdown">
+                        <a th:href="@{/cart-list}" class="css-pointer dropdown-toggle" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-shopping-cart fsc pull-left"></i>
+                            <span class="cart-number" th:if="${count > 0}" th:text="${count}">0</span>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="cart-content dropdown-menu">
+                            <div class="cart-title">
+                                <h4>Shopping Cart</h4>
+                            </div>
+                            <div th:if="${list != null}" th:each="item : ${list}">
+                                <div class="cart-items">
+                                    <div class="cart-item clearfix">
+                                        <div class="cart-item-image">
+                                            <a th:href="@{/cart-list}"><img
+                                                    th:src="@{'/images/' + ${item.getProductId().getImage()}}"
+                                                    alt="Breakfast with coffee" style="width: 50px;height: 50px"></a>
+                                        </div>
+                                        <div class="cart-item-desc">
+                                            <a th:href="@{/cart-list}" th:text="${item.getProductId().getName()}">Breakfast
+                                                with coffee</a>
+                                            <span class="cart-item-price"
+                                                  th:text="${'$' + item.getProductId().getPrice()}">$19.99</span>
+                                            <i class="fa fa-times"></i>
+                                            <span class="cart-item-quantity" th:text="${item.getQuantity()}">x 2</span>
+                                            <a th:href="@{/remove/{id}(id=${item.getProductId().getId()})}" class="remove"><i
+                                                    class="fa fa-times  ci-close"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cart-action clearfix">
+                                <span class="pull-left checkout-price"
+                                      th:if="${total > 0}"
+                                      th:text="${'$' + total}">$ 114.95</span>
+                                <a class="btn btn-default pull-right" th:href="@{/cart-list}">View Cart</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a th:href="@{(${get == null} ? '/userlogin' : '/account-info')}" class="css-pointer dropdown-toggle" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user fsc pull-left"></i>
+                            <span th:if="${get != null}" class="caret"></span>
+                            <span th:if="${get != null}" th:text="${'Hello ' + get.fullName}"></span>
+                            <span th:if="${get == null}" th:text="${' Login'}"></span>
+                        </a>
+                        <ul class="dropdown-menu" th:if="${get != null}">
+                            <li><a th:href="@{/account-info}">Profile</a></li>
+                            <li><a th:href="@{/order-history}">Order history</a></li>
+                            <li><a th:href="@{/log-out}">Log-out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.navbar-collapse -->
+        </div>
+    </nav>
+
+
+    <div class="main-wrapper">
+        <!-- Mainpage -->
+        <div layout:fragment="contents"></div>
+        <!-- /Mainpage -->
+        <!-- Footer-->
+        <section class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+
+                    </div>
+                    <div class="col-sm-4">
+                        <h1>About us</h1>
+                        <p>Duis leo justo, condimentum at purus eu,Aenean sed dolor sem. Etiam massa libero, auctor
+                            vitae egestas et, accumsan quis nunc.Duis leo justo, condimentum at purus eu, posuere
+                            pretium tellus.</p>
+                        <a href="./about.html">Read more &rarr;</a>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <h1>Reach us</h1>
+                        <div class="footer-social-icons">
+                            <a href="http://www.facebook.com">
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a href="http://www.twitter.com">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="http://plus.google.com">
+                                <i class="fa fa-google"></i>
+                            </a>
+                            <a href="http://www.youtube.com">
+                                <i class="fa fa-youtube-play"></i>
+                            </a>
+                            <a href="http://www.vimeo.com">
+                                <i class="fa fa-vimeo"></i>
+                            </a>
+                            <a href="http://www.pinterest.com">
+                                <i class="fa fa-pinterest-p"></i>
+                            </a>
+                            <a href="http://www.linkedin.com">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </div>
+                        <div class="footer-address">
+                            <p><i class="fa fa-map-marker"></i>28 Seventh Avenue, Neew York, 10014</p>
+                            <p><i class="fa fa-phone"></i>Phone: (415) 124-5678</p>
+                            <p><i class="fa fa-envelope-o"></i>support@restaurant.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer - Copyright -->
+            <div class="footer-copyrights">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p><i class="fa fa-copyright"></i> 2015.Tomato.All rights reserved. Designed with <i
+                                    class="fa fa-heart primary-color"></i> by Surjithctly</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+
+<!-- STYLE SWITCHER
+============================================= -->
+<div class="b-settings-panel">
+    <div class="settings-section">
+                <span>
+        Boxed
+        </span>
+        <div class="b-switch">
+            <div class="switch-handle"></div>
+        </div>
+        <span>
+        Wide
+        </span>
+    </div>
+    <hr class="dashed" style="margin: 15px 0px;">
+    <h5>Main Background</h5>
+    <div class="settings-section bg-list">
+        <div class="bg-wood_pattern"></div>
+        <div class="bg-shattered"></div>
+        <div class="bg-vichy"></div>
+        <div class="bg-random-grey-variations"></div>
+        <div class="bg-irongrip"></div>
+        <div class="bg-gplaypattern"></div>
+        <div class="bg-diamond_upholstery"></div>
+        <div class="bg-denim"></div>
+        <div class="bg-crissXcross"></div>
+        <div class="bg-climpek"></div>
+    </div>
+    <hr class="dashed" style="margin: 15px 0px;">
+    <h5>Color Scheme</h5>
+    <div class="settings-section color-list">
+        <div th:data-src="'/fe/css/themes/blue.css'" style="background: #45b5f5"></div>
+        <div th:data-src="'/fe/css/themes/brown.css'" style="background: #dc8068"></div>
+        <div th:data-src="'/fe/css/themes/cyan.css'" style="background: #00becc"></div>
+        <div th:data-src="'/fe/css/themes/green.css'" style="background: #5bb75b"></div>
+        <div th:data-src="'/fe/css/themes/orange.css'" style="background: #ff7149"></div>
+        <div th:data-src="'/fe/css/themes/pink.css'" style="background: #fba1a1"></div>
+        <div th:data-src="'/fe/css/themes/red.css'" style="background: #dc3522"></div>
+        <div th:data-src="'/fe/css/themes/yellow.css'" style="background: #fdb813"></div>
+    </div>
+
+    <a th:data-src="'/fe/css/style.css'" class="reset"><span class="bg-wood_pattern">Reset</span></a>
+
+    <div class="btn-settings"></div>
+</div>
+<!-- END STYLE SWITCHER
+============================================= -->
+
+<!-- Javascript -->
+<script th:src="@{/fe/js/vendor/jquery-1.11.2.min.js}"></script>
+<script th:src="@{/fe/js/vendor/bootstrap.min.js}"></script>
+<script th:src="@{/fe/js/vendor/jquery.flexslider-min.js}"></script>
+<script th:src="@{/fe/js/vendor/spectragram.js}"></script>
+<script th:src="@{/fe/js/vendor/owl.carousel.min.js}"></script>
+<script th:src="@{/fe/js/vendor/velocity.min.js}"></script>
+<script th:src="@{/fe/js/vendor/velocity.ui.min.js}"></script>
+<script th:src="@{/fe/js/vendor/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/fe/js/vendor/bootstrap-clockpicker.min.js}"></script>
+<script th:src="@{/fe/js/vendor/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/fe/js/vendor/isotope.pkgd.min.js}"></script>
+<script th:src="@{/fe/js/vendor/slick.min.js}"></script>
+<script th:src="@{/fe/js/vendor/wow.min.js}"></script>
+<script th:src="@{/fe/js/animation.js}"></script>
+<script th:src="@{/fe/js/vendor/vegas/vegas.min.js}"></script>
+<script th:src="@{/fe/js/vendor/jquery.mb.YTPlayer.js}"></script>
+<script th:src="@{/fe/js/vendor/jquery.stellar.js}"></script>
+<script th:src="@{/fe/js/main.js}"></script>
+<script th:src="@{/fe/js/vendor/mc/jquery.ketchup.all.min.js}"></script>
+<script th:src="@{/fe/js/vendor/mc/main.js}"></script>
+<script>
+    $('#password, #confirm_password').on('keyup', function () {
+        if ($('#password').val() == $('#confirm_password').val()) {
+            $('#message').html('Matching').css('color', 'green');
+        } else
+            $('#message').html('Not Matching').css('color', 'red');
+    });
+    var password = document.getElementById("password")
+        , confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword() {
+        if (password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear() - 18;
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = yyyy + '-' + mm + '-' + dd;//
+    document.getElementById("datefield").setAttribute("max", today);
+</script>
+</body>
+
+</html>
